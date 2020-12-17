@@ -16,3 +16,11 @@ services:
       - ./data/mysql/initdb.d:/docker-entrypoint-initdb.d
       - ./data/mysql/conf.d:/etc/mysql/conf.d
       - ./log/mysql:/var/log/mysql
+  elasticsearch:
+    image: elasticsearch:7.10.1
+    restart: always
+    ports:
+      - 9200:9200
+      - 9300:9300
+    volumes:
+      - ./data/elasticsearch:/usr/share/elasticsearch/data
