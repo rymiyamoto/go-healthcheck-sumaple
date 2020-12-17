@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  rdb:
+    image: mysql:8.0.22
+    restart: always
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_USER: ${DB_USER:-hoge}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-fuga}
+      MYSQL_DATABASE: ${DB_SCHEMA:-boo}
+    volumes:
+      - ./data/mysql/initdb.d:/docker-entrypoint-initdb.d
+      - ./data/mysql/conf.d:/etc/mysql/conf.d
+      - ./log/mysql:/var/log/mysql
